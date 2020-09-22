@@ -36,18 +36,18 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel4" min="-2" pref="63" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="aNo" min="-2" pref="115" max="-2" attributes="0"/>
+                              <Component id="aNoText" min="-2" pref="115" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel1" min="-2" pref="63" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="aLidz" min="-2" pref="115" max="-2" attributes="0"/>
+                              <Component id="aLidzText" min="-2" pref="115" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="bLidz" min="-2" pref="115" max="-2" attributes="0"/>
-                          <Component id="bNo" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="bLidzText" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="bNoText" min="-2" pref="115" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -78,14 +78,14 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="aNo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="bNo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="aNoText" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="bNoText" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="aLidz" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="bLidz" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="aLidzText" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="bLidzText" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -96,24 +96,24 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="aNo">
+    <Component class="javax.swing.JTextField" name="aNoText">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aNoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aNoTextActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="bNo">
+    <Component class="javax.swing.JTextField" name="bNoText">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bNoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bNoTextActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="bLidz">
+    <Component class="javax.swing.JTextField" name="bLidzText">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bLidzActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bLidzTextActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="aLidz">
+    <Component class="javax.swing.JTextField" name="aLidzText">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aLidzActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aLidzTextActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

@@ -11,6 +11,11 @@ package mandelbrots;
  */
 public class Mandelbrots extends javax.swing.JDialog {
 
+    
+
+   
+    
+    
     /**
      * Creates new form Mandelbrots
      */
@@ -28,10 +33,10 @@ public class Mandelbrots extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        aNo = new javax.swing.JTextField();
-        bNo = new javax.swing.JTextField();
-        bLidz = new javax.swing.JTextField();
-        aLidz = new javax.swing.JTextField();
+        aNoText = new javax.swing.JTextField();
+        bNoText = new javax.swing.JTextField();
+        bLidzText = new javax.swing.JTextField();
+        aLidzText = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -42,27 +47,27 @@ public class Mandelbrots extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
-        aNo.addActionListener(new java.awt.event.ActionListener() {
+        aNoText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aNoActionPerformed(evt);
+                aNoTextActionPerformed(evt);
             }
         });
 
-        bNo.addActionListener(new java.awt.event.ActionListener() {
+        bNoText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bNoActionPerformed(evt);
+                bNoTextActionPerformed(evt);
             }
         });
 
-        bLidz.addActionListener(new java.awt.event.ActionListener() {
+        bLidzText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bLidzActionPerformed(evt);
+                bLidzTextActionPerformed(evt);
             }
         });
 
-        aLidz.addActionListener(new java.awt.event.ActionListener() {
+        aLidzText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aLidzActionPerformed(evt);
+                aLidzTextActionPerformed(evt);
             }
         });
 
@@ -106,15 +111,15 @@ public class Mandelbrots extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(aNo, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(aNoText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(aLidz, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(aLidzText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bLidz, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bNo, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(bLidzText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bNoText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(102, 102, 102)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,13 +141,13 @@ public class Mandelbrots extends javax.swing.JDialog {
                     .addComponent(panelis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(aNo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bNo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aNoText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bNoText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(aLidz, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bLidz, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aLidzText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bLidzText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(AprMandel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,26 +157,42 @@ public class Mandelbrots extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void aNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aNoActionPerformed
+    private void aNoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aNoTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_aNoActionPerformed
+    }//GEN-LAST:event_aNoTextActionPerformed
 
-    private void bNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNoActionPerformed
+    private void bNoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNoTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bNoActionPerformed
+    }//GEN-LAST:event_bNoTextActionPerformed
 
-    private void bLidzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLidzActionPerformed
+    private void bLidzTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLidzTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bLidzActionPerformed
+    }//GEN-LAST:event_bLidzTextActionPerformed
 
-    private void aLidzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aLidzActionPerformed
+    private void aLidzTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aLidzTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_aLidzActionPerformed
+    }//GEN-LAST:event_aLidzTextActionPerformed
 
     private void AprMandelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AprMandelActionPerformed
-        // TODO add your handling code here:
+          
+    double aNo = Double.parseDouble(aNoText.getText());
+    double bNo = Double.parseDouble(bNoText.getText());
+    double aLidz = Double.parseDouble(aLidzText.getText());
+    double bLidz = Double.parseDouble(bLidzText.getText());
+    
+    //System.out.println(aNo + " " + bNo + " "+aLidz + " " +bLidz + " ");
+    
+    int m = 10;
+    
+    for(int i = 0; i < aNo; i++){
+        
+    }
+    
+
     }//GEN-LAST:event_AprMandelActionPerformed
 
+ 
+    
     /**
      * @param args the command line arguments
      */
@@ -216,10 +237,10 @@ public class Mandelbrots extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AprMandel;
-    private javax.swing.JTextField aLidz;
-    private javax.swing.JTextField aNo;
-    private javax.swing.JTextField bLidz;
-    private javax.swing.JTextField bNo;
+    private javax.swing.JTextField aLidzText;
+    private javax.swing.JTextField aNoText;
+    private javax.swing.JTextField bLidzText;
+    private javax.swing.JTextField bNoText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
