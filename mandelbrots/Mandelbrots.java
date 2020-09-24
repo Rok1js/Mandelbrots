@@ -182,6 +182,8 @@ public class Mandelbrots extends javax.swing.JDialog {
     private void AprMandelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AprMandelActionPerformed
     
     //Iegūst vērtības a no/līdz un b no/līdz
+    //A = Y
+    //B = X
     double aNo = Double.parseDouble(aNoText.getText());
     double bNo = Double.parseDouble(bNoText.getText());
     double aLidz = Double.parseDouble(aLidzText.getText());
@@ -194,13 +196,21 @@ public class Mandelbrots extends javax.swing.JDialog {
     int pla = panelis.getWidth();
     
     //Aprēķina intervālu
-    
+        double intervalsA = (aLidz - aNo)/aug;
+        double intervalsB = (bLidz - bNo)/pla;
     
         if (aug%2 == 0) {aug = aug + 1;}
-        if (pla%2 == 0) {pla = pla +1;}
+        if (pla%2 == 0) {pla = pla +1;} 
         
         int x0 = (pla-1)/2;
         int y0 = (aug-1)/2;
+        
+      
+        
+        System.out.println(intervalsA + " " + intervalsB);
+        
+        
+        
         System.out.println(x0 + " "+y0);
         Graphics g = panelis.getGraphics();
        g.setColor(Color.red);
