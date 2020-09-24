@@ -5,6 +5,9 @@
  */
 package mandelbrots;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 /**
  *
  * @author rbarzdins
@@ -17,7 +20,7 @@ public class Mandelbrots extends javax.swing.JDialog {
     
     
     /**
-     * Creates new form Mandelbrots
+     * Creates new form mandelbrots
      */
     public Mandelbrots(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -133,18 +136,21 @@ public class Mandelbrots extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(85, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panelis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(aNoText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bNoText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(aNoText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bNoText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(panelis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aLidzText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bLidzText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,7 +180,8 @@ public class Mandelbrots extends javax.swing.JDialog {
     }//GEN-LAST:event_aLidzTextActionPerformed
 
     private void AprMandelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AprMandelActionPerformed
-          
+    
+    //Iegūst vērtības a no/līdz un b no/līdz
     double aNo = Double.parseDouble(aNoText.getText());
     double bNo = Double.parseDouble(bNoText.getText());
     double aLidz = Double.parseDouble(aLidzText.getText());
@@ -182,16 +189,31 @@ public class Mandelbrots extends javax.swing.JDialog {
     
     //System.out.println(aNo + " " + bNo + " "+aLidz + " " +bLidz + " ");
     
-    int m = 10;
+    //Iegūst paneļa augstumu/garumu
+    int aug = panelis.getHeight();
+    int pla = panelis.getWidth();
     
-    for(int i = 0; i < aNo; i++){
+    //Aprēķina intervālu
+    
+    
+        if (aug%2 == 0) {aug = aug + 1;}
+        if (pla%2 == 0) {pla = pla +1;}
         
-    }
+        int x0 = (pla-1)/2;
+        int y0 = (aug-1)/2;
+        System.out.println(x0 + " "+y0);
+        Graphics g = panelis.getGraphics();
+       g.setColor(Color.red);
+       g.drawLine(1, y0, pla, y0);
+       g.drawLine(x0, 1, x0, aug);
+        
+    System.out.println(aug + " "+ pla);
+    
     
 
     }//GEN-LAST:event_AprMandelActionPerformed
 
- 
+  
     
     /**
      * @param args the command line arguments
