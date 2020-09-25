@@ -14,7 +14,7 @@ import java.awt.Graphics;
  */
 public class Mandelbrots extends javax.swing.JDialog {
 
-    
+    double z;
 
    
     
@@ -93,7 +93,7 @@ public class Mandelbrots extends javax.swing.JDialog {
         panelis.setLayout(panelisLayout);
         panelisLayout.setHorizontalGroup(
             panelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         panelisLayout.setVerticalGroup(
             panelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +107,7 @@ public class Mandelbrots extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -182,8 +182,8 @@ public class Mandelbrots extends javax.swing.JDialog {
     private void AprMandelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AprMandelActionPerformed
     
     //Iegūst vērtības a no/līdz un b no/līdz
-    //A = Y
-    //B = X
+    //A = X
+    //B = Y
     double aNo = Double.parseDouble(aNoText.getText());
     double bNo = Double.parseDouble(bNoText.getText());
     double aLidz = Double.parseDouble(aLidzText.getText());
@@ -192,32 +192,48 @@ public class Mandelbrots extends javax.swing.JDialog {
     //System.out.println(aNo + " " + bNo + " "+aLidz + " " +bLidz + " ");
     
     //Iegūst paneļa augstumu/garumu
-    int aug = panelis.getHeight();
-    int pla = panelis.getWidth();
+    int augstums = panelis.getHeight();
+    int platums = panelis.getWidth();
     
-    //Aprēķina intervālu
-        double intervalsA = (aLidz - aNo)/aug;
-        double intervalsB = (bLidz - bNo)/pla;
+    System.out.println(augstums + " "+ platums);
     
-        if (aug%2 == 0) {aug = aug + 1;}
-        if (pla%2 == 0) {pla = pla +1;} 
-        
-        int x0 = (pla-1)/2;
-        int y0 = (aug-1)/2;
-        
-      
-        
-        System.out.println(intervalsA + " " + intervalsB);
-        
-        
-        
-        System.out.println(x0 + " "+y0);
-        Graphics g = panelis.getGraphics();
-       g.setColor(Color.red);
-       g.drawLine(1, y0, pla, y0);
-       g.drawLine(x0, 1, x0, aug);
-        
-    System.out.println(aug + " "+ pla);
+    int m = 10;
+        for (int x = 0; x < platums; x++) {
+            for (int y = 0; y < augstums; y++) {
+                double a = aNo + (x*((aLidz-aNo)/platums));
+                double b = bNo + (y*((bLidz-bNo)/augstums));
+                
+                
+                double bVec = b;
+                double aVec = a;
+                double cReals = a;
+                double cImag = b;
+                double aJaun;
+                double bJaun;
+                
+                int i = 0;
+                
+                do {
+                    aJaun = (Math.sqrt(aVec)) - (Math.sqrt(bVec))+cReals;
+                    bJaun = 2*aVec*bVec + cImag;
+                    z = Math.abs((Math.sqrt(aJaun)) + (Math.sqrt(bJaun)));
+                    aVec = aJaun;
+                    bVec = bJaun;
+                    i++;     
+                } while (i<100 && (Math.abs(z)<=m));
+                if (i>=100) {
+                    
+                } else {
+                    
+                }
+                //atliek punktu a;b
+                
+            }
+        }
+               
+                
+    
+
     
     
 
