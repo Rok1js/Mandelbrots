@@ -197,6 +197,7 @@ public class Mandelbrots extends javax.swing.JDialog {
     
     System.out.println(augstums + " "+ platums);
     
+     Graphics g=panelis.getGraphics();
     int m = 10;
         for (int x = 0; x < platums; x++) {
             for (int y = 0; y < augstums; y++) {
