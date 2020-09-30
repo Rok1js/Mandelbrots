@@ -198,13 +198,14 @@ public class Mandelbrots extends javax.swing.JDialog {
     int platums = panelis.getWidth();
     
     int pixels[] = new int[platums*augstums];  
-    
+    int j=0;
     Image img;
     img = createImage(new MemoryImageSource(platums,augstums,pixels,0,platums));
     Graphics g=panelis.getGraphics();
-    
 
-    
+  
+        
+       
     
     
     System.out.println(augstums + " "+ platums);
@@ -235,32 +236,21 @@ public class Mandelbrots extends javax.swing.JDialog {
                     i++;     
                 } while (i<100 && (Math.abs(z)<=m));
                     
-                    
-                for (int j = 0; j < platums*augstums ; j++) {
-                        pixels[j]=(255<<24) |(0<<16)|(255<<8)|0;         
-                    }
-                g.drawImage(img,x,y,this);
+                j++;
                 
-                for (int x2 = 0; x2 < platums; x2++) {
-                    double yMat =(x2-platums/2.0)/xPunkti
+                if (i>=100) {
+                pixels[j] = (255<<24)|(0<<16)|(255<<8)|0;
+                g.drawImage(img,0,0,this);  
+                } else {
+                    
                 }
-//                
-//                if (i>=100) {
-//                    for (int j = 0; j < platums*augstums ; j++) {
-//                        pixels[j]=(255<<24) |(0<<16)|(0<<8)|0;
-//                    }
-//                    g.drawImage(img,x,y,this);
-//                } else {
-//                    for (int j = 0; j < platums*augstums ; j++) {
-//                        pixels[j]=(255<<24) |(255<<16)|(255<<8)|0;
-//                    }
-//                    g.drawImage(img,x,y,this);
-//                }
                 
                 //atliek punktu a;b
                 
             }
         }
+        
+        
                
                 
     
