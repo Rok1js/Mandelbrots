@@ -47,7 +47,7 @@ public class Mandelbrots extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         AprMandel = new javax.swing.JButton();
-        panelis = new javax.swing.JPanel();
+        Panelis = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -91,14 +91,14 @@ public class Mandelbrots extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout panelisLayout = new javax.swing.GroupLayout(panelis);
-        panelis.setLayout(panelisLayout);
-        panelisLayout.setHorizontalGroup(
-            panelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout PanelisLayout = new javax.swing.GroupLayout(Panelis);
+        Panelis.setLayout(PanelisLayout);
+        PanelisLayout.setHorizontalGroup(
+            PanelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 600, Short.MAX_VALUE)
         );
-        panelisLayout.setVerticalGroup(
-            panelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        PanelisLayout.setVerticalGroup(
+            PanelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
 
@@ -107,9 +107,9 @@ public class Mandelbrots extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
+                .addComponent(Panelis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -138,7 +138,7 @@ public class Mandelbrots extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
+                .addContainerGap(139, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -149,14 +149,12 @@ public class Mandelbrots extends javax.swing.JDialog {
                             .addComponent(aNoText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bNoText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(panelis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(aLidzText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bLidzText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(aLidzText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bLidzText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(Panelis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(AprMandel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -194,16 +192,21 @@ public class Mandelbrots extends javax.swing.JDialog {
     //System.out.println(aNo + " " + bNo + " "+aLidz + " " +bLidz + " ");
     
     //Iegūst paneļa augstumu/garumu
-    int augstums = panelis.getHeight();
-    int platums = panelis.getWidth();
-    
+    int augstums = Panelis.getHeight();
+    int platums = Panelis.getWidth();
+    int j=0;
+    int k=0;
     int pixels[] = new int[platums*augstums];  
-    Image img;
-    img = createImage(new MemoryImageSource(platums,augstums,pixels,0,platums));
-    Graphics g=panelis.getGraphics();
+    Image image;
+    image = createImage(new MemoryImageSource(platums,augstums,pixels,0,platums));
+    Graphics g=Panelis.getGraphics();
 
+        for (int i = 0; i < 10; i++) {
+            pixels[i] = (255<<24)|(0<<16)|(255<<8)|0;       
+        }
+   
   
-        
+       
        
     
     
@@ -235,20 +238,26 @@ public class Mandelbrots extends javax.swing.JDialog {
                     i++;     
                 } while (i<100 && (Math.abs(z)<=m));
                     
+            
                 
                 if (i>=100) {
-                pixels[?] = (255<<24)|(0<<16)|(0<<8)|0;  
+               
                 } else {
-                pixels[?] = (255<<24)|(0<<16)|(255<<8)|0; 
-                }
                 
+                }
+           
+                pixels[j] = k; 
+            g.drawImage(image, x , y, this);
+                System.out.println(pixels[x*y]);
+                 j++;
+                 System.out.println(j);
+                 
                 //atliek punktu a;b
                 
             }
         }
         
-        
-               
+       
                 
     
 
@@ -303,6 +312,7 @@ public class Mandelbrots extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AprMandel;
+    private javax.swing.JPanel Panelis;
     private javax.swing.JTextField aLidzText;
     private javax.swing.JTextField aNoText;
     private javax.swing.JTextField bLidzText;
@@ -311,6 +321,5 @@ public class Mandelbrots extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel panelis;
     // End of variables declaration//GEN-END:variables
 }
