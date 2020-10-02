@@ -17,7 +17,8 @@ import java.awt.image.MemoryImageSource;
 public class Mandelbrots extends javax.swing.JDialog {
 
     double z;
-
+    int presedX1;
+    int presedX2;
    
     
     
@@ -50,7 +51,6 @@ public class Mandelbrots extends javax.swing.JDialog {
         Panelis = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         aNoText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +91,15 @@ public class Mandelbrots extends javax.swing.JDialog {
             }
         });
 
+        Panelis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                PanelisMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                PanelisMouseReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelisLayout = new javax.swing.GroupLayout(Panelis);
         Panelis.setLayout(PanelisLayout);
         PanelisLayout.setHorizontalGroup(
@@ -99,7 +108,7 @@ public class Mandelbrots extends javax.swing.JDialog {
         );
         PanelisLayout.setVerticalGroup(
             PanelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -107,9 +116,9 @@ public class Mandelbrots extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(53, 53, 53)
                 .addComponent(Panelis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -138,7 +147,7 @@ public class Mandelbrots extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(139, Short.MAX_VALUE)
+                .addContainerGap(128, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -153,9 +162,11 @@ public class Mandelbrots extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(aLidzText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bLidzText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(Panelis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Panelis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)))
                 .addComponent(AprMandel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -179,92 +190,99 @@ public class Mandelbrots extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_aLidzTextActionPerformed
 
-    private void AprMandelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AprMandelActionPerformed
-    
-    //Iegūst vērtības a no/līdz un b no/līdz
-    //A = X
-    //B = Y
+    public void zime(){
     double aNo = Double.parseDouble(aNoText.getText());
     double bNo = Double.parseDouble(bNoText.getText());
     double aLidz = Double.parseDouble(aLidzText.getText());
     double bLidz = Double.parseDouble(bLidzText.getText());
-    
-    //System.out.println(aNo + " " + bNo + " "+aLidz + " " +bLidz + " ");
-    
-    //Iegūst paneļa augstumu/garumu
     int augstums = Panelis.getHeight();
     int platums = Panelis.getWidth();
     int j=0;
-    int k=0;
-    int pixels[] = new int[platums*augstums];  
+    int pixels[] = new int[platums*augstums];
+    double aJaun;
+    double bJaun;
     Image image;
     image = createImage(new MemoryImageSource(platums,augstums,pixels,0,platums));
     Graphics g=Panelis.getGraphics();
-
-        for (int i = 0; i < 10; i++) {
-            pixels[i] = (255<<24)|(0<<16)|(255<<8)|0;       
-        }
-   
-  
-       
-       
-    
-    
-    System.out.println(augstums + " "+ platums);
-    
-    
-    int m = 10;
-        for (int x = 0; x < platums; x++) {
-            for (int y = 0; y < augstums; y++) {
+        int m = 10;
+        for (int y = 0; y < augstums; y++) {
+            double b = bNo + (y*((bLidz-bNo)/augstums));
+            for (int x = 0; x < platums; x++) {
+                
                 double a = aNo + (x*((aLidz-aNo)/platums));
-                double b = bNo + (y*((bLidz-bNo)/augstums));
-                
-                
+
                 double bVec = b;
                 double aVec = a;
                 double cReals = a;
                 double cImag = b;
-                double aJaun;
-                double bJaun;
+               
                 
                 int i = 0;
                 
                 do {
-                    aJaun = (Math.sqrt(aVec)) - (Math.sqrt(bVec))+cReals;
+                    aJaun = (Math.pow(aVec,2)) - (Math.pow(bVec,2))+cReals;
                     bJaun = 2*aVec*bVec + cImag;
-                    z = Math.abs((Math.sqrt(aJaun)) + (Math.sqrt(bJaun)));
+                    z = Math.abs((Math.pow(aJaun,2)) + (Math.pow(bJaun,2)));
                     aVec = aJaun;
                     bVec = bJaun;
                     i++;     
-                } while (i<100 && (Math.abs(z)<=m));
+                } while (i<100 && z<=m);
                     
             
                 
                 if (i>=100) {
-               
-                } else {
-                
+                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|0;
+                } else if(i>10 && i<=20) {
+                    pixels[j] = (255<<24)|(0<<16)|(255<<8)|30;
+                } else if (i>20 && i<=30){
+                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|60;
+                }else if (i>30 && i<=40){
+                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|90;
+                }else if (i>40 && i<=50){
+                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|120;
+                }else if (i>50 && i<=60){
+                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|150;
+                }else if (i>60 && i<=70){
+                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|180;
+                }else if (i>70 && i<=80){
+                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|210;
+                }else if (i>80 && i<=90){
+                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|235;
+                }else if (i>90 && i<=99){
+                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|255;
+                } else if(i>0 && i<=10){
+                    pixels[j] = (255<<24)|(255<<16)|(0<<8)|255;
                 }
-           
-                pixels[j] = k; 
-            g.drawImage(image, x , y, this);
-                System.out.println(pixels[x*y]);
-                 j++;
-                 System.out.println(j);
-                 
+                
+                j++;
+          
+             
                 //atliek punktu a;b
                 
             }
         }
         
-       
-                
-    
+        g.drawImage(image,0,0,null);
+    }
+    private void AprMandelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AprMandelActionPerformed
 
-    
-    
-
+    zime();
     }//GEN-LAST:event_AprMandelActionPerformed
+
+
+    
+    
+    private void PanelisMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelisMousePressed
+        presedX1 = 0;
+        presedX2 = 0;
+        presedX1 = evt.getX();
+    }//GEN-LAST:event_PanelisMousePressed
+
+    private void PanelisMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelisMouseReleased
+        
+        presedX2 = evt.getX();
+        System.out.println(presedX1+ " "+presedX2);
+    }//GEN-LAST:event_PanelisMouseReleased
 
   
     
