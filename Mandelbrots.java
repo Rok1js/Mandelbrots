@@ -9,18 +9,22 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.MemoryImageSource;
+import java.util.Stack;
 
 /**
  *
  * @author rbarzdins
  */
 public class Mandelbrots extends javax.swing.JDialog {
-
+    double smooth;
+    int test=0;
     double z;
-    int presedX1;
-    int presedX2;
-   
-    
+    int pressedX1,pressedX2,pressedY1,pressedY2,pressedX3,pressedY3;
+    double aNo,bNo,aLidz,bLidz;
+    int augstums,platums;
+    double aNoj, aLidzj, bNoj, bLidzj;
+    boolean zimejums = false;
+    Stack<Double> steks = new Stack<Double>(); 
     
     /**
      * Creates new form mandelbrots
@@ -49,6 +53,7 @@ public class Mandelbrots extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         AprMandel = new javax.swing.JButton();
         Panelis = new javax.swing.JPanel();
+        zoomOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -91,12 +96,28 @@ public class Mandelbrots extends javax.swing.JDialog {
             }
         });
 
+        Panelis.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                PanelisMouseMoved(evt);
+            }
+        });
         Panelis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelisMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PanelisMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 PanelisMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 PanelisMouseReleased(evt);
+            }
+        });
+        Panelis.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PanelisKeyPressed(evt);
             }
         });
 
@@ -110,6 +131,13 @@ public class Mandelbrots extends javax.swing.JDialog {
             PanelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 600, Short.MAX_VALUE)
         );
+
+        zoomOut.setText("zoom out");
+        zoomOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zoomOutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,21 +163,25 @@ public class Mandelbrots extends javax.swing.JDialog {
                             .addComponent(bLidzText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bNoText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(84, 84, 84)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(131, 131, 131)
-                        .addComponent(AprMandel, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(AprMandel, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(zoomOut, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(102, 102, 102)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(84, 84, 84)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(128, Short.MAX_VALUE)
+                .addGap(95, 95, 95)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(zoomOut, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 392, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -190,13 +222,10 @@ public class Mandelbrots extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_aLidzTextActionPerformed
 
-    public void zime(){
-    double aNo = Double.parseDouble(aNoText.getText());
-    double bNo = Double.parseDouble(bNoText.getText());
-    double aLidz = Double.parseDouble(aLidzText.getText());
-    double bLidz = Double.parseDouble(bLidzText.getText());
-    int augstums = Panelis.getHeight();
-    int platums = Panelis.getWidth();
+    public void zime(double aNo,double bNo,double aLidz,double bLidz){
+    //System.out.println(aNo + " " + aLidz + " "+bNo + " "+bLidz + " ");
+    augstums = Panelis.getHeight();
+    platums = Panelis.getWidth();
     int j=0;
     int pixels[] = new int[platums*augstums];
     double aJaun;
@@ -206,7 +235,7 @@ public class Mandelbrots extends javax.swing.JDialog {
     Graphics g=Panelis.getGraphics();
         int m = 10;
         for (int y = 0; y < augstums; y++) {
-            double b = bNo + (y*((bLidz-bNo)/augstums));
+            double b = bLidz - (y*((bLidz-bNo)/augstums));
             for (int x = 0; x < platums; x++) {
                 
                 double a = aNo + (x*((aLidz-aNo)/platums));
@@ -228,32 +257,20 @@ public class Mandelbrots extends javax.swing.JDialog {
                     i++;     
                 } while (i<100 && z<=m);
                     
-            
+                smooth = i + 1.0 - Math.log(Math.log(Math.abs(z)))/Math.log(2.0);
+                smooth = smooth/100;
+                
+                
                 
                 if (i>=100) {
-                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|0;
-                } else if(i>10 && i<=20) {
-                    pixels[j] = (255<<24)|(0<<16)|(255<<8)|30;
-                } else if (i>20 && i<=30){
-                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|60;
-                }else if (i>30 && i<=40){
-                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|90;
-                }else if (i>40 && i<=50){
-                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|120;
-                }else if (i>50 && i<=60){
-                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|150;
-                }else if (i>60 && i<=70){
-                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|180;
-                }else if (i>70 && i<=80){
-                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|210;
-                }else if (i>80 && i<=90){
-                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|235;
-                }else if (i>90 && i<=99){
-                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|255;
-                } else if(i>0 && i<=10){
-                    pixels[j] = (255<<24)|(255<<16)|(0<<8)|255;
+                    pixels[j] = (255<<24)|(0<<16)|(0<<8)|0;            
+                }
+                else{
+                   pixels[j] = Color.HSBtoRGB((float) (0.95f +2 * smooth),0.60f,1.0f);
+                   //pixels[j] = (255<<24)|(i*2%256<<16)|(0<<8)|0;  
                 }
                 
+//               
                 j++;
           
              
@@ -265,25 +282,85 @@ public class Mandelbrots extends javax.swing.JDialog {
         g.drawImage(image,0,0,null);
     }
     private void AprMandelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AprMandelActionPerformed
-
-    zime();
+    
+    aNo = Double.parseDouble(aNoText.getText());
+    bNo = Double.parseDouble(bNoText.getText());
+    aLidz = Double.parseDouble(aLidzText.getText());
+    bLidz = Double.parseDouble(bLidzText.getText());
+    zime(aNo,bNo,aLidz,bLidz);
+    zimejums = true;
     }//GEN-LAST:event_AprMandelActionPerformed
 
 
     
     
     private void PanelisMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelisMousePressed
-        presedX1 = 0;
-        presedX2 = 0;
-        presedX1 = evt.getX();
+        pressedX1 = 0;
+        pressedX2 = 0;
+        pressedY1= 0;
+        pressedY2= 0;
+        pressedX1 = evt.getX();
+        pressedY1 = evt.getY(); 
     }//GEN-LAST:event_PanelisMousePressed
 
     private void PanelisMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelisMouseReleased
-        
-        presedX2 = evt.getX();
-        System.out.println(presedX1+ " "+presedX2);
+         pressedX2 = evt.getX();
+        pressedY2 = pressedY1 + pressedX2 - pressedX1;
+            if (zimejums == true) {
+                zoom();
+            }
     }//GEN-LAST:event_PanelisMouseReleased
 
+    private void PanelisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelisMouseClicked
+       
+    }//GEN-LAST:event_PanelisMouseClicked
+
+    private void PanelisMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelisMouseExited
+        
+    }//GEN-LAST:event_PanelisMouseExited
+
+    private void PanelisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PanelisKeyPressed
+        
+    }//GEN-LAST:event_PanelisKeyPressed
+
+    private void zoomOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zoomOutActionPerformed
+        if (!steks.empty()) {
+       bLidz =steks.pop();
+       aLidz =steks.pop();
+       bNo =steks.pop();
+       aNo =steks.pop(); 
+       zime(aNo,bNo,aLidz,bLidz);
+      
+        }
+       
+    }//GEN-LAST:event_zoomOutActionPerformed
+
+    private void PanelisMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelisMouseMoved
+
+    }//GEN-LAST:event_PanelisMouseMoved
+
+    public void zoom(){
+        steks.push(aNo);
+        steks.push(bNo);
+        steks.push(aLidz);
+        steks.push(bLidz);
+ 
+        aNoj = aNo + (pressedX1*((aLidz-aNo)/platums));
+        aLidzj = aNo + (pressedX2*((aLidz-aNo)/platums));
+        bNoj = bLidz - (pressedY2*((bLidz-bNo)/augstums));
+        bLidzj = bLidz - (pressedY1*((bLidz-bNo)/augstums));
+        
+        aNo = aNoj;
+        bNo = bNoj;
+        aLidz = aLidzj;
+        bLidz = bLidzj;
+        
+        zime(aNo,bNo,aLidz,bLidz);
+//        
+//        System.out.println("X1: "+pressedX1+ " X2: "+pressedX2);
+//        System.out.println("Y1: "+pressedY1+ " Y2: "+pressedY2);
+//        System.out.println("ano: "+aNo + " alidz: " + aLidz + " bno: "+bNoj + " blidz: "+bLidzj + " ");
+    }
   
     
     /**
@@ -339,5 +416,6 @@ public class Mandelbrots extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton zoomOut;
     // End of variables declaration//GEN-END:variables
 }
